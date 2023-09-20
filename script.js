@@ -232,8 +232,18 @@ document.getElementById("btnReduceColors").addEventListener("click", ()=>{
     // convert the rgb str array back into integers for pixel data
     let reducedRgbArr = new Array
 
-    for(let i=0; i<sampleValuesArr.length; i++){
-        reducedRgbArr[i] = sampleValuesArr[i]
+    for(let i=0; i<sampleValuesArr.length; i++){        
+        let rgbRegex = /rgb\( (\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
+        let matches = rgbRegex.exec(sampleValuesArr[i]);
+
+        let red = matches[1];
+        let green = matches[2];
+        let blue = matches[3];
+
+        reducedRgbArr.push(parseInt(red));
+        reducedRgbArr.push(parseInt(green));
+        reducedRgbArr.push(parseInt(blue));
+        reducedRgbArr.push(255);
     }
     console.log("Reduced array (int values): ",reducedRgbArr)
 
