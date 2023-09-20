@@ -176,54 +176,6 @@ document.getElementById("btnTestMostCommonColor").addEventListener("click", ()=>
 
 
 
-// rgb to hexadecimal to base 10 function 
-    // function rgbToBaseTen(rgbStr){
-    //     // extract the RGB vals from the str
-    //     let rgbRegex = /rgb\( (\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
-    //     let match = rgbRegex.exec(rgbStr);
-    //     let redVal = match[1];
-    //     let greenVal = match[2];
-    //     let blueVal = match[3];
-
-    //     // convert each to hexadecimal
-    //     first = hexVal(Math.floor(redVal/16))
-    //     second = hexVal( (redVal/16 - Math.floor(redVal/16)) * 16 )
-        
-    //     third = hexVal(Math.floor(greenVal/16))
-    //     fourth = hexVal( (greenVal/16 - Math.floor(greenVal/16)) * 16 )
-
-    //     fifth = hexVal(Math.floor(blueVal/16))
-    //     sixth = hexVal( (blueVal/16 - Math.floor(blueVal/16)) * 16 )
-
-    //     return `${first}${second}${third}${fourth}${fifth}${sixth}`
-    // }
-    // function hexVal(num){
-    //     // expect int as param
-    //     // returns str
-
-    //     if(num < 10){
-    //         return num.toString();
-    //     }
-
-    //     switch(num){
-    //         case 10:
-    //             return 'A'
-    //         case 11:
-    //             return 'B'
-    //         case 12:
-    //             return 'C'
-    //         case 13:
-    //             return 'D'
-    //         case 14:
-    //             return 'E'
-    //         case 15:
-    //             return 'F'
-    //         default:
-    //             return 'Error'
-    //     }
-
-    // }
-
 //
 // btnReduceColors
 //
@@ -276,6 +228,14 @@ document.getElementById("btnReduceColors").addEventListener("click", ()=>{
         sampleValuesArr[i] = closestColor(samplevaluesArr[i], mostCommonArr)
     }
     console.log("sampleValuesArr (After Rounding): ", sampleValuesArr);
+
+    // convert the rgb str array back into integers for pixel data
+    let reducedRgbArr = new Array
+
+    for(let i=0; i<sampleValuesArr.length; i++){
+        reducedRgbArr[i] = sampleValuesArr[i]
+    }
+    console.log("Reduced array (int values): ",reducedRgbArr)
 
 
     // output the image to the screen
