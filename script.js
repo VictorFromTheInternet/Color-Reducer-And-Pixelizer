@@ -13,11 +13,15 @@ let pixelSampleSize = 10;
 let imgHeight = 0;
 let imgWidth = 0;
 
+//btns
+let btnReduceColors = document.getElementById("btnReduceColors")
+let btnPixelateImage = document.getElementById("btnPixelateImage")
+
 // lodaing spinner for buttons
 let spinnerElem = document.createElement("span");
 spinnerElem.classList.add("spinner-border");
 spinnerElem.classList.add("spinner-border-sm");
-spinnerElem.role = "status"
+//spinnerElem.role = "status"
 //spinnerElem.aria-hidden = "true";
 
 
@@ -186,7 +190,25 @@ document.getElementById("btnTestMostCommonColor").addEventListener("click", ()=>
 //
 // btnReduceColors
 //
-document.getElementById("btnReduceColors").addEventListener("click", ()=>{
+btnReduceColors.addEventListener("click", ()=>{
+    //add loading anim to btn
+    let spinnerElem = document.createElement("span");
+    spinnerElem.classList.add("spinner-border");
+    spinnerElem.classList.add("spinner-border-sm");   
+    spinnerElem.style.marginRight = ".75rem"
+    
+    let pText = document.createElement("p");    
+    pText.style.display = "inline"
+    pText.innerText = "Loading"
+
+    btnReduceColors.innerText = ""
+    btnReduceColors.append(spinnerElem)
+    btnReduceColors.append(pText)
+    
+})
+
+btnReduceColors.addEventListener("click", ()=>{  
+
     // get values
     numColors = Number(document.getElementById("num-colors").value);
     imgHeight = document.getElementById("source-image").height;
@@ -266,12 +288,17 @@ document.getElementById("btnReduceColors").addEventListener("click", ()=>{
     // append the new image to the dom
     pixelatedImageContainer.append(outputImage);
 
+    // remove loading anim
+    //remove(".spinnerElem")
+    //btnReduceColors.innerText = "Reduce Colors"
+
 })
+
 
 //
 // btnPixelatedImage (edit this function to get the source from the color reduced image)
 //
-document.getElementById("btnPixelatedImage").addEventListener("click",()=>{
+btnPixelateImage.addEventListener("click",()=>{
     imgHeight = document.getElementById("source-image").height;
     imgWidth = document.getElementById("source-image").width;
     pixelSampleSize = Number(document.getElementById("pixel-sample-size").value);
