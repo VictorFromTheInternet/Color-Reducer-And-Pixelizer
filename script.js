@@ -13,6 +13,13 @@ let pixelSampleSize = 10;
 let imgHeight = 0;
 let imgWidth = 0;
 
+// lodaing spinner for buttons
+let spinnerElem = document.createElement("span");
+spinnerElem.classList.add("spinner-border");
+spinnerElem.classList.add("spinner-border-sm");
+spinnerElem.role = "status"
+//spinnerElem.aria-hidden = "true";
+
 
 // output range field vales to labels
 document.getElementById("pixel-sample-size").addEventListener("input", ()=>{
