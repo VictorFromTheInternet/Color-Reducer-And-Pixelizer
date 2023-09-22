@@ -148,7 +148,7 @@ function closestColor(rgbVal, compareVals){
         let bTwo = matchesTwo[3]
 
         currDistance = Math.sqrt( Math.pow(rOne - rTwo ,2) + Math.pow( gOne - gTwo ,2) + Math.pow(bOne - bTwo ,2) )
-        console.log(currDistance)
+        //console.log(currDistance)
 
         if(i == 0){ // init minDistance
             minDistance = currDistance;
@@ -168,6 +168,7 @@ function closestColor(rgbVal, compareVals){
 
 
 // Testing methods
+/*
 document.getElementById("btnTestRgb").addEventListener("click", ()=>{    
 
     let rgbVal = "rgb( 30, 30, 30)";
@@ -184,12 +185,27 @@ document.getElementById("btnTestMostCommonColor").addEventListener("click", ()=>
     // console.log("The most common color is: ",mostCommonAppearances(numColors,colors));
     console.log("The most common color is: ",mostCommon(numColors,colors));
 })
+*/
+document.getElementById("btnTestClosestColor").addEventListener("click", ()=>{       
+    let colors = ["rgb( 50, 50, 50)","rgb( 50, 50, 50)","rgb( 50, 50, 50)","rgb( 60, 60, 60)","rgb( 90, 90, 90)","rgb( 90, 90, 90)","rgb( 90, 90, 90)","rgb( 90, 90, 90)","rgb( 230, 72, 81)","rgb( 230, 72, 81)"];
+    console.log("Colors: ",colors)
+    let mostCommon = ["rgb( 50, 50, 50)","rgb( 60, 60, 60)","rgb( 90, 90, 90)"]
+    console.log("Most common: ", mostCommon)
+
+    // console.log("The most common color is: ",mostCommonAppearances(numColors,colors));
+    let roundedColors = new Array();
+    for(let i=0; i<colors.length; i++){
+        roundedColors[i] = closestColor(colors[i], mostCommon)
+    }
+    console.log("The rounded colors are: ",roundedColors);
+})
 
 
 
 //
 // btnReduceColors
 //
+/*
 btnReduceColors.addEventListener("click", ()=>{
     //add loading anim to btn
     let spinnerElem = document.createElement("span");
@@ -206,6 +222,7 @@ btnReduceColors.addEventListener("click", ()=>{
     btnReduceColors.append(pText)
     
 })
+*/
 
 btnReduceColors.addEventListener("click", ()=>{  
 
@@ -225,7 +242,7 @@ btnReduceColors.addEventListener("click", ()=>{
     ctx.drawImage(pixelImg,0,0); // should be an exact copy of source-image atp
 
     pixelArr = ctx.getImageData(0,0,imgWidth,imgHeight).data;
-    console.log("pixelArr: ", pixelArr);            
+        //console.log("pixelArr: ", pixelArr);            
 
     // grab rgb values from pixelArr
     // step through the arr (one pixel at a time)
@@ -244,26 +261,27 @@ btnReduceColors.addEventListener("click", ()=>{
         }
     }    
 
-    // sort the array and then count appearances
+    // sort the array and then count most common appearances
     sampleValuesArr.sort(descendingOrder)
-    console.log("sampleValuesArr: ",sampleValuesArr)
+        //console.log("sampleValuesArr: ",sampleValuesArr)
 
     // get N most common vals
     let mostCommonArr = mostCommon(numColors, sampleValuesArr)
-    console.log("mostCommonArr: ", mostCommonArr)
+        //console.log("mostCommonArr: ", mostCommonArr)
 
     // round each index to closest value 
+    let roundedArr = sampleValuesArr
     for(let i=0; i<sampleValuesArr; i++){
-        sampleValuesArr[i] = closestColor(samplevaluesArr[i], mostCommonArr)
+        roundedArr[i] = closestColor(sampleValuesArr[i], mostCommonArr)
     }
-    console.log("sampleValuesArr (After Rounding): ", sampleValuesArr);
+    console.log("roundedArr (str): ", roundedArr);
 
     // convert the rgb str array back into integers for pixel data
-    let reducedRgbArr = new Array
+    let reducedRgbArr = new Array()
 
-    for(let i=0; i<sampleValuesArr.length; i++){        
+    for(let i=0; i<roundedArr.length; i++){        
         let rgbRegex = /rgb\( (\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
-        let matches = rgbRegex.exec(sampleValuesArr[i]);
+        let matches = rgbRegex.exec(roundedArr[i]);
 
         let red = matches[1];
         let green = matches[2];
@@ -274,14 +292,15 @@ btnReduceColors.addEventListener("click", ()=>{
         reducedRgbArr.push(parseInt(blue));
         reducedRgbArr.push(255);
     }
-    console.log("Reduced array (int values): ",reducedRgbArr)
-
-
-    // output the image to the screen
+    console.log("reducedRgbArr (int): ",reducedRgbArr)
+    console.log("c.data before: ",c.data)
+    c.data = reducedRgbArr
+    console.log("c.data After: ",c.data)
 
     // assign image data to outputImage
-    let outputImage = new Image();
-    outputImage.src = c.toDataURL("image/jpeg");    
+    let outputImage = new Image();    
+    outputImage.src = c.toDataURL("image/jpeg");  
+    console.log("outpuImg.src: ",outputImage.src)  
     outputImage.classList.add("pixelated"); // add a class name to target elem later to clean dom
     outputImage.width = imgWidth;   
 
@@ -307,6 +326,7 @@ btnPixelateImage.addEventListener("click",()=>{
     c = document.createElement("canvas");
     c.width = imgWidth;
     c.height = imgHeight;
+        //console.log(c.data)
 
     // use canvas elm and grab the pixel data
     pixelImg = document.getElementById("source-image");
