@@ -185,7 +185,7 @@ document.getElementById("btnTestMostCommonColor").addEventListener("click", ()=>
     // console.log("The most common color is: ",mostCommonAppearances(numColors,colors));
     console.log("The most common color is: ",mostCommon(numColors,colors));
 })
-*/
+
 document.getElementById("btnTestClosestColor").addEventListener("click", ()=>{       
     let colors = ['rgb( 99, 99, 116)', 'rgb( 99, 99, 116)', 'rgb( 99, 98, 113)', 'rgb( 99, 98, 113)', 'rgb( 99, 9, 9)', 'rgb( 99, 9, 9)', 'rgb( 99, 9, 19)', 'rgb( 99, 9, 19)', 'rgb( 99, 9, 17)', 'rgb( 99, 9, 17)', 'rgb( 99, 9, 16)', 'rgb( 99, 9, 16)'];
     console.log("Colors: ",colors)
@@ -199,6 +199,7 @@ document.getElementById("btnTestClosestColor").addEventListener("click", ()=>{
     }
     console.log("The rounded colors are: ",roundedColors);
 })
+*/
 
 
 
