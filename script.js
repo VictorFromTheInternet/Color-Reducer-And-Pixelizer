@@ -187,7 +187,7 @@ document.getElementById("btnTestMostCommonColor").addEventListener("click", ()=>
 })
 */
 document.getElementById("btnTestClosestColor").addEventListener("click", ()=>{       
-    let colors = ["rgb( 50, 50, 50)","rgb( 50, 50, 50)","rgb( 50, 50, 50)","rgb( 60, 60, 60)","rgb( 90, 90, 90)","rgb( 90, 90, 90)","rgb( 90, 90, 90)","rgb( 90, 90, 90)","rgb( 230, 72, 81)","rgb( 230, 72, 81)"];
+    let colors = ['rgb( 99, 99, 116)', 'rgb( 99, 99, 116)', 'rgb( 99, 98, 113)', 'rgb( 99, 98, 113)', 'rgb( 99, 9, 9)', 'rgb( 99, 9, 9)', 'rgb( 99, 9, 19)', 'rgb( 99, 9, 19)', 'rgb( 99, 9, 17)', 'rgb( 99, 9, 17)', 'rgb( 99, 9, 16)', 'rgb( 99, 9, 16)'];
     console.log("Colors: ",colors)
     let mostCommon = ["rgb( 50, 50, 50)","rgb( 60, 60, 60)","rgb( 90, 90, 90)"]
     console.log("Most common: ", mostCommon)
@@ -263,15 +263,15 @@ btnReduceColors.addEventListener("click", ()=>{
 
     // sort the array and then count most common appearances
     sampleValuesArr.sort(descendingOrder)
-        //console.log("sampleValuesArr: ",sampleValuesArr)
+        console.log("sampleValuesArr: ",sampleValuesArr)
 
     // get N most common vals
     let mostCommonArr = mostCommon(numColors, sampleValuesArr)
-        //console.log("mostCommonArr: ", mostCommonArr)
+        console.log("mostCommonArr: ", mostCommonArr)
 
     // round each index to closest value 
     let roundedArr = sampleValuesArr
-    for(let i=0; i<sampleValuesArr; i++){
+    for(let i=0; i<sampleValuesArr.length; i++){
         roundedArr[i] = closestColor(sampleValuesArr[i], mostCommonArr)
     }
     console.log("roundedArr (str): ", roundedArr);
@@ -294,8 +294,24 @@ btnReduceColors.addEventListener("click", ()=>{
     }
     console.log("reducedRgbArr (int): ",reducedRgbArr)
     console.log("c.data before: ",c.data)
+    console.log("c before: ",c)
     c.data = reducedRgbArr
     console.log("c.data After: ",c.data)
+    console.log("c After: ",c)
+
+    // step through the new int vals, overwrite canvas pixels
+    for (let y = 0; y < imgHeight; y += 1) { 
+        for (let x = 0; x < imgWidth; x += 1) {
+            // grab the position/index of the pixel
+            let p = (x + (y*imgWidth)) * 4; // (multiply by 4 to skip over the rgba vals) ex: [r,g,b,a, ...]
+            let rgbaVal = `rgba( ${reducedRgbArr[p]}, ${reducedRgbArr[p + 1]}, ${reducedRgbArr[p + 2]}, ${reducedRgbArr[p + 3]})`;
+            ctx.fillStyle = rgbaVal;
+
+            // draw a block with the rgba value of the first pixel (top-left) in the sample
+            ctx.fillRect(x, y, 1, 1);
+
+        }
+    }  
 
     // assign image data to outputImage
     let outputImage = new Image();    
@@ -326,7 +342,9 @@ btnPixelateImage.addEventListener("click",()=>{
     c = document.createElement("canvas");
     c.width = imgWidth;
     c.height = imgHeight;
-        //console.log(c.data)
+        console.log(c.data)
+        console.log("w: ",c.width)
+        console.log("h: ",c.height)
 
     // use canvas elm and grab the pixel data
     pixelImg = document.getElementById("source-image");
