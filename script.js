@@ -267,19 +267,19 @@ btnReduceColors.addEventListener("click", ()=>{
         console.log("sampleValuesArr: ",sampleValuesArr)
 
     // get N most common vals (filter values first)
-    let filteredRgbVals = samplesValues.filter("click", (elem,index)=>{
+    let filteredRgbVals = sampleValuesArr.filter( (elem,index)=>{
         let rgbRegex = /rgb\( (\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
         let matches = rgbRegex.exec(elem);
 
         let red = parseInt(matches[1])
-        let green = parseint(matches[2])
+        let green = parseInt(matches[2])
         let blue = parseInt(matches[3])
         let avg = (red+green+blue) /3
 
         if(avg < 255 && avg >55)
             return elem
     })
-    let mostCommonArr = mostCommon(numColors, sampleValuesArr)
+    let mostCommonArr = mostCommon(numColors, filteredRgbVals)
         console.log("mostCommonArr: ", mostCommonArr)
 
     // round each index to closest value 
