@@ -172,6 +172,22 @@ function closestColor(rgbVal, compareVals){
     return minVal;
 }
 
+function appendColorInputs(numColors){
+    console.log("test add color inputs")
+
+    let currLen = colorInputsArr.length
+    for(let i=currLen; i<numColors; i++){
+        document.getElementById("color-inputs-container").append(colorInput);
+    }
+}
+
+function removeColorInputs(numColors){
+    console.log("test");
+
+    // grab a list of elem, start at currLength
+    //document.querySelectorAll(className).forEach(el => el.remove())
+}
+
 
 // Testing methods
 /*
@@ -409,13 +425,12 @@ function selectElementsByClass(className){
 }
 
 // function to remove elements by class name from dom
-function remove(className){
+function removeByClassName(className){
     document.querySelectorAll(className).forEach(el => el.remove());
 }
 
 //btnClearOutput 
 document.getElementById("btnClearOutput").addEventListener("click", ()=>{
-    console.log("Button clear output clicked")
-
-    remove(".pixelated"); // remove all elments with the className: pixelated
+    //console.log("Button clear output clicked")
+    removeByClassName(".pixelated"); // remove all elments with the className: pixelated
 })
