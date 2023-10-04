@@ -22,7 +22,8 @@ let spinnerElem = document.createElement("span");
 spinnerElem.classList.add("spinner-border");
 spinnerElem.classList.add("spinner-border-sm");
 
-// create color input element
+// create color input element and array to store them
+let colorInputsArr = new Array()
 let colorInput = document.createElement("input");
 colorInput.type = "color"
 colorInput.classList.add("form-control")
