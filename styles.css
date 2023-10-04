@@ -41,6 +41,16 @@
     margin: 0;
 }
 
+#color-inputs-container{
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+}
+#color-inputs-container .colorInputs{
+    display: inline-flex;
+}
+
+
 #grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
