@@ -178,6 +178,7 @@ function appendColorInputs(numColors){
     let currLen = colorInputsArr.length
     for(let i=currLen; i<numColors; i++){
         document.getElementById("color-inputs-container").append(colorInput);
+        colorInputsArr.append(colorInput)
     }
 }
 
@@ -186,6 +187,11 @@ function removeColorInputs(numColors){
 
     // grab a list of elem, start at currLength
     //document.querySelectorAll(className).forEach(el => el.remove())
+    let currLen = colorInputsArr.length
+    for(let i=currLen; i>numColors; i--){
+        document.getElementById("color-inputs-container").remove(colorInput);
+        colorInputsArr.pop(colorInput)
+    }
 }
 
 
