@@ -48,6 +48,7 @@
 }
 #color-inputs-container .colorInputs{
     display: inline-flex;
+    margin: .25em .5em .25em .5em;
 }
 
 
