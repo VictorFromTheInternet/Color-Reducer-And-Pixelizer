@@ -403,8 +403,15 @@ btnPixelateImage.addEventListener("click",()=>{
 })
 
 
+// function to select elements by class name
+function selectElementsByClass(className){
+    return document.querySelectorAll(className)
+}
+
 // function to remove elements by class name from dom
-const remove = (className) => document.querySelectorAll(className).forEach(el => el.remove());
+function remove(className){
+    document.querySelectorAll(className).forEach(el => el.remove());
+}
 
 //btnClearOutput 
 document.getElementById("btnClearOutput").addEventListener("click", ()=>{
