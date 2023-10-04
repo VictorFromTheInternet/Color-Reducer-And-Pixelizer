@@ -1,4 +1,9 @@
+/*
 
+    Notes to self: name your global variables better pls o _ o
+
+
+*/
 let pixelatedImageContainer = document.getElementById("pixelated-image-container");
 
 let pixelImg = new Image();
@@ -7,7 +12,7 @@ let ctx;
 let pixelArr;
 let sampleValuesArr = new Array();
 let mostCommonColors = new Array();
-let numColors = 5;
+let numColors = 1;
 let pixelSampleSize = 10;
 
 let imgHeight = 0;
@@ -173,12 +178,13 @@ function closestColor(rgbVal, compareVals){
 }
 
 function appendColorInputs(numColors){
-    console.log("test add color inputs")
+    console.log(numColors)
 
     let currLen = colorInputsArr.length
     for(let i=currLen; i<numColors; i++){
-        document.getElementById("color-inputs-container").append(colorInput);
-        colorInputsArr.append(colorInput)
+        let tempElem = colorInput;
+        document.getElementById("color-inputs-container").append(tempElem);
+        //colorInputsArr.append(colorInput)
     }
 }
 
@@ -188,14 +194,22 @@ function removeColorInputs(numColors){
     // grab a list of elem, start at currLength
     //document.querySelectorAll(className).forEach(el => el.remove())
     let currLen = colorInputsArr.length
+    let currElem = document.getElementById("color-inputs-container")
     for(let i=currLen; i>numColors; i--){
-        document.getElementById("color-inputs-container").remove(colorInput);
-        colorInputsArr.pop(colorInput)
+        currElem.remove(colorInput);
+        //colorInputsArr.pop(colorInput)
     }
 }
 
 
 // Testing methods
+function testAppendColorInputs(){
+    let num = document.getElementById("num-colors").value;
+    console.log(num)
+    appendColorInputs(num)
+}
+
+
 /*
 document.getElementById("btnTestRgb").addEventListener("click", ()=>{    
 
