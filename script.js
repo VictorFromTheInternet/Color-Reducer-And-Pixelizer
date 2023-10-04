@@ -17,12 +17,17 @@ let imgWidth = 0;
 let btnReduceColors = document.getElementById("btnReduceColors")
 let btnPixelateImage = document.getElementById("btnPixelateImage")
 
-// lodaing spinner for buttons
+// loading spinner for buttons
 let spinnerElem = document.createElement("span");
 spinnerElem.classList.add("spinner-border");
 spinnerElem.classList.add("spinner-border-sm");
-//spinnerElem.role = "status"
-//spinnerElem.aria-hidden = "true";
+
+// create color input element
+let colorInput = document.createElement("input");
+colorInput.type = "color"
+colorInput.classList.add("form-control")
+colorInput.classList.add("form-control-color")
+
 
 
 // output range field vales to labels
@@ -306,11 +311,9 @@ btnReduceColors.addEventListener("click", ()=>{
         reducedRgbArr.push(255);
     }
     console.log("reducedRgbArr (int): ",reducedRgbArr)
-    console.log("c.data before: ",c.data)
-    console.log("c before: ",c)
+    console.log("c.data before: ",c.data)    
     c.data = reducedRgbArr
-    console.log("c.data After: ",c.data)
-    console.log("c After: ",c)
+    console.log("c.data After: ",c.data)    
 
     // step through the new int vals, overwrite canvas pixels
     for (let y = 0; y < imgHeight; y += 1) { 
