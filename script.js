@@ -28,11 +28,11 @@ spinnerElem.classList.add("spinner-border");
 spinnerElem.classList.add("spinner-border-sm");
 
 // create color input element and array to store them
-let colorInputsArr = new Array()
-let colorInput = document.createElement("input");
-colorInput.type = "color"
-colorInput.classList.add("form-control")
-colorInput.classList.add("form-control-color")
+let COLOR_INPUTS_ARRAY = new Array()
+// let colorInput = document.createElement("input");
+// colorInput.type = "color"
+// colorInput.classList.add("form-control")
+// colorInput.classList.add("form-control-color")
 
 
 
@@ -180,9 +180,13 @@ function closestColor(rgbVal, compareVals){
 function appendColorInputs(numColors){
     console.log(numColors)
 
-    let currLen = colorInputsArr.length
+    let currLen = COLOR_INPUTS_ARRAY.length
     for(let i=currLen; i<numColors; i++){
-        let tempElem = colorInput;
+        let tempElem = document.createElement("input");
+        tempElem.type = "color"
+        tempElem.classList.add("form-control")
+        tempElem.classList.add("form-control-color")
+        tempElem.id = `colorInput${i}`
         document.getElementById("color-inputs-container").append(tempElem);
         //colorInputsArr.append(colorInput)
     }
@@ -193,7 +197,7 @@ function removeColorInputs(numColors){
 
     // grab a list of elem, start at currLength
     //document.querySelectorAll(className).forEach(el => el.remove())
-    let currLen = colorInputsArr.length
+    let currLen = COLOR_INPUTS_ARRAY.length
     let currElem = document.getElementById("color-inputs-container")
     for(let i=currLen; i>numColors; i--){
         currElem.remove(colorInput);
