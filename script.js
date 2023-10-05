@@ -28,7 +28,7 @@ spinnerElem.classList.add("spinner-border");
 spinnerElem.classList.add("spinner-border-sm");
 
 // create color input element and array to store them
-let COLOR_INPUTS_ARRAY = new Array()
+// let COLOR_INPUTS_ARRAY = new Array()
 // let colorInput = document.createElement("input");
 // colorInput.type = "color"
 // colorInput.classList.add("form-control")
@@ -47,6 +47,61 @@ document.getElementById("num-colors").addEventListener("input", ()=>{
     document.getElementById("num-colors-range-label").innerText = numColors;
     //console.log(numColors)
 })
+
+// event listener for the numColors range input (append/remove color inputs)
+document.getElementById("num-colors").addEventListener("input", ()=>{
+    numColorInputs = document.querySelectorAll(".colorInputs").length
+    numColors = Number(document.getElementById("num-colors").value)
+
+    if(numColors > numColorInputs)
+        appendColorInputs(numColors)
+    else if(numColors < numColorInputs)
+        removeColorInputs(numColors)
+})
+function appendColorInputs(numColors){
+    let colorInputsList = document.querySelectorAll(".colorInputs")
+    let currLen = colorInputsList.length
+    for(let i=currLen; i<numColors; i++){
+        let tempElem = document.createElement("input");
+        tempElem.type = "color"
+        tempElem.classList.add("form-control")
+        tempElem.classList.add("form-control-color")
+        tempElem.classList.add("colorInputs")
+        tempElem.id = `colorInput${i}`
+        document.getElementById("color-inputs-container").append(tempElem);
+        //colorInputsArr.append(colorInput)
+    }
+}
+
+function removeColorInputs(numColors){
+
+    // grab curr length and then iterate backwards
+    let colorInputsList = document.querySelectorAll(".colorInputs")
+    let currLen = colorInputsList.length
+
+    for(let i=currLen; i>numColors; i--){        
+        let tempId = `colorInput${i-1}`
+        //console.log(tempId)
+        //console.log(document.getElementById(`colorInput${i-1}`))
+
+
+        let tempElem = document.getElementById(tempId)
+        tempElem.remove()        
+    }
+}
+
+
+// Testing methods
+// function testAppendColorInputs(){
+//     let num = Number(document.getElementById("num-colors").value)
+//     console.log(num)
+//     appendColorInputs(num)
+// }
+// function testRemoveColorInputs(){
+//     let num = Number(document.getElementById("num-colors").value)
+//     console.log(num)
+//     removeColorInputs(num)
+// }
 
 // sorting functions for the color reducer
 function ascendingOrder(a, b) {
@@ -177,53 +232,6 @@ function closestColor(rgbVal, compareVals){
     return minVal;
 }
 
-function appendColorInputs(numColors){
-    console.log(numColors)
-
-    let currLen = COLOR_INPUTS_ARRAY.length
-    for(let i=currLen; i<numColors; i++){
-        let tempElem = document.createElement("input");
-        tempElem.type = "color"
-        tempElem.classList.add("form-control")
-        tempElem.classList.add("form-control-color")
-        tempElem.classList.add("colorInputs")
-        tempElem.id = `colorInput${i}`
-        document.getElementById("color-inputs-container").append(tempElem);
-        //colorInputsArr.append(colorInput)
-    }
-}
-
-function removeColorInputs(numColors){
-
-    // grab curr length and then iterate backwards
-    let colorInputsList = document.querySelectorAll(".colorInputs")
-    let currLen = colorInputsList.length
-    console.log(currLen)
-
-
-    for(let i=currLen; i>numColors; i--){        
-        let tempId = `colorInput${i-1}`
-        console.log(tempId)
-        //console.log(document.getElementById(`colorInput${i-1}`))
-
-
-        let tempElem = document.getElementById(tempId)
-        tempElem.remove()        
-    }
-}
-
-
-// Testing methods
-function testAppendColorInputs(){
-    let num = Number(document.getElementById("num-colors").value)
-    console.log(num)
-    appendColorInputs(num)
-}
-function testRemoveColorInputs(){
-    let num = Number(document.getElementById("num-colors").value)
-    console.log(num)
-    removeColorInputs(num)
-}
 
 /*
 document.getElementById("btnTestRgb").addEventListener("click", ()=>{    
