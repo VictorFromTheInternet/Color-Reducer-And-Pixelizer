@@ -186,6 +186,7 @@ function appendColorInputs(numColors){
         tempElem.type = "color"
         tempElem.classList.add("form-control")
         tempElem.classList.add("form-control-color")
+        tempElem.classList.add("colorInputs")
         tempElem.id = `colorInput${i}`
         document.getElementById("color-inputs-container").append(tempElem);
         //colorInputsArr.append(colorInput)
@@ -193,26 +194,36 @@ function appendColorInputs(numColors){
 }
 
 function removeColorInputs(numColors){
-    console.log("test");
 
-    // grab a list of elem, start at currLength
-    //document.querySelectorAll(className).forEach(el => el.remove())
-    let currLen = COLOR_INPUTS_ARRAY.length
-    let currElem = document.getElementById("color-inputs-container")
-    for(let i=currLen; i>numColors; i--){
-        currElem.remove(colorInput);
-        //colorInputsArr.pop(colorInput)
+    // grab curr length and then iterate backwards
+    let colorInputsList = document.querySelectorAll(".colorInputs")
+    let currLen = colorInputsList.length
+    console.log(currLen)
+
+
+    for(let i=currLen; i>numColors; i--){        
+        let tempId = `colorInput${i-1}`
+        console.log(tempId)
+        //console.log(document.getElementById(`colorInput${i-1}`))
+
+
+        let tempElem = document.getElementById(tempId)
+        tempElem.remove()        
     }
 }
 
 
 // Testing methods
 function testAppendColorInputs(){
-    let num = document.getElementById("num-colors").value;
+    let num = Number(document.getElementById("num-colors").value)
     console.log(num)
     appendColorInputs(num)
 }
-
+function testRemoveColorInputs(){
+    let num = Number(document.getElementById("num-colors").value)
+    console.log(num)
+    removeColorInputs(num)
+}
 
 /*
 document.getElementById("btnTestRgb").addEventListener("click", ()=>{    
