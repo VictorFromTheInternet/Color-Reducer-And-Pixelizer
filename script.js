@@ -92,8 +92,9 @@ function removeColorInputs(numColors){
 }
 
 // collect color inputs and push to array
-function getColorInputValues(){
+function getColorInputValues(inputArray){
     // query selector, all 
+    let tempArray = new Array()
     let colorInputsList = document.querySelectorAll('.colorInputs')
     console.log(colorInputsList)
 
@@ -104,9 +105,11 @@ function getColorInputValues(){
         // console.log(document.getElementById(tempId).value)
 
         let tempValue = document.getElementById(tempId).value
-        COLOR_INPUTS_ARRAY.push(tempValue) 
+        tempArray.push(tempValue) 
     }
-    console.log(COLOR_INPUTS_ARRAY)
+
+    inputArray = tempArray
+    console.log(inputArray)
     
 }
 
