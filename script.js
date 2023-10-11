@@ -105,6 +105,7 @@ function getColorInputValues(inputArray){
         // console.log(document.getElementById(tempId).value)
 
         let tempValue = document.getElementById(tempId).value
+        tempValue = hexToRgb(tempValue)
         tempArray.push(tempValue) 
     }
 
@@ -112,7 +113,16 @@ function getColorInputValues(inputArray){
     console.log(inputArray)
     
 }
+function hexToRgb(hexStr){
+    const regex = /^#(.{2})(.{2})(.{2})$/g
+    let matches = regex.exec(hexStr)
+    
+    let red = parseInt(matches[1], 16)
+    let green = parseInt(matches[2], 16)
+    let blue = parseInt(matches[3], 16)
 
+    return `rgb( ${red}, ${green}, ${blue})`
+}
 
 // Testing methods
 // function testAppendColorInputs(){
