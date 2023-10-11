@@ -92,7 +92,7 @@ function removeColorInputs(numColors){
 }
 
 // collect color inputs and push to array
-function getColorInputValues(inputArray){
+function getColorInputValues(){
     // query selector, all 
     let tempArray = new Array()
     let colorInputsList = document.querySelectorAll('.colorInputs')
@@ -109,9 +109,8 @@ function getColorInputValues(inputArray){
         tempArray.push(tempValue) 
     }
 
-    inputArray = tempArray
-    console.log(inputArray)
-    
+    console.log(tempArray)
+    return tempArray
 }
 function hexToRgb(hexStr){
     const regex = /^#(.{2})(.{2})(.{2})$/g
@@ -150,7 +149,6 @@ function ascendingOrder(a, b) {
     // strings must be equal
     return 0;
 };
-
 function descendingOrder(a, b) {
     const strA = a.toUpperCase(); // ignore upper and lowercase
     const strB = b.toUpperCase(); // ignore upper and lowercase
@@ -361,10 +359,13 @@ btnReduceColors.addEventListener("click", ()=>{
     }    
 
     // sort the array and then count most common appearances
+    /*
     sampleValuesArr.sort(descendingOrder)
         console.log("sampleValuesArr: ",sampleValuesArr)
+    */
 
     // get N most common vals (filter values first)
+    /*
     let filteredRgbVals = sampleValuesArr.filter( (elem,index)=>{
         let rgbRegex = /rgb\( (\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
         let matches = rgbRegex.exec(elem);
@@ -379,11 +380,15 @@ btnReduceColors.addEventListener("click", ()=>{
     })
     let mostCommonArr = mostCommon(numColors, filteredRgbVals)
         console.log("mostCommonArr: ", mostCommonArr)
+    */
+
+    // grab the color input values
+    let colorReduceArray = getColorInputValues()
 
     // round each index to closest value 
     let roundedArr = sampleValuesArr
     for(let i=0; i<sampleValuesArr.length; i++){
-        roundedArr[i] = closestColor(sampleValuesArr[i], mostCommonArr)
+        roundedArr[i] = closestColor(sampleValuesArr[i], colorReduceArray)
     }
     console.log("roundedArr (str): ", roundedArr);
 
