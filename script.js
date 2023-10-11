@@ -18,6 +18,8 @@ let pixelSampleSize = 10;
 let imgHeight = 0;
 let imgWidth = 0;
 
+let COLOR_INPUTS_ARRAY = new Array();
+
 //btns
 let btnReduceColors = document.getElementById("btnReduceColors")
 let btnPixelateImage = document.getElementById("btnPixelateImage")
@@ -72,7 +74,6 @@ function appendColorInputs(numColors){
         //colorInputsArr.append(colorInput)
     }
 }
-
 function removeColorInputs(numColors){
 
     // grab curr length and then iterate backwards
@@ -88,6 +89,25 @@ function removeColorInputs(numColors){
         let tempElem = document.getElementById(tempId)
         tempElem.remove()        
     }
+}
+
+// collect color inputs and push to array
+function getColorInputValues(){
+    // query selector, all 
+    let colorInputsList = document.querySelectorAll('.colorInputs')
+    console.log(colorInputsList)
+
+    for(let i=0; i<colorInputsList.length; i++){        
+        let tempId = `colorInput${i}`
+        // console.log(tempId)
+        // console.log(document.getElementById(tempId))
+        // console.log(document.getElementById(tempId).value)
+
+        let tempValue = document.getElementById(tempId).value
+        COLOR_INPUTS_ARRAY.push(tempValue) 
+    }
+    console.log(COLOR_INPUTS_ARRAY)
+    
 }
 
 
