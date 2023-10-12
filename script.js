@@ -2,6 +2,14 @@
 
     Notes to self: name your global variables better pls o _ o
 
+    current bugs:
+        Color Reducer:
+            - only a solid color is generated instead of a range of values
+                - cause: im pretty sure one of the arrays that im using is now instantiated or reset upon hitting 'reduce colors' a 2nd time
+                        so if you reduce the image the first time with only black selected for ex, it will mutate the pixel arr to only include those values
+
+                - fix: the source array for reducing the images colors must come from the image each time (unmutated)
+
 
 */
 let pixelatedImageContainer = document.getElementById("pixelated-image-container");
@@ -357,7 +365,8 @@ btnReduceColors.addEventListener("click", ()=>{
             ctx.fillRect(x, y, 1, 1);
 
         }
-    }    
+    }   
+        console.log("Sample Values Arr: ",sampleValuesArr) 
 
     // sort the array and then count most common appearances
     /*
@@ -385,14 +394,14 @@ btnReduceColors.addEventListener("click", ()=>{
 
     // grab the color input values
     let colorReduceArray = getColorInputValues()
-    console.log("Color Reduce Array: ",colorReduceArray)
+        console.log("Color Reduce Array: ",colorReduceArray)
 
     // round each index to closest value 
     let roundedArr = sampleValuesArr
     for(let i=0; i<sampleValuesArr.length; i++){
         roundedArr[i] = closestColor(sampleValuesArr[i], colorReduceArray)
     }
-    console.log("roundedArr (str): ", roundedArr);
+        console.log("roundedArr (str): ", roundedArr);
 
     // convert the rgb str array back into integers for pixel data
     let reducedRgbArr = new Array()
@@ -410,10 +419,10 @@ btnReduceColors.addEventListener("click", ()=>{
         reducedRgbArr.push(parseInt(blue));
         reducedRgbArr.push(255);
     }
-    console.log("reducedRgbArr (int): ",reducedRgbArr)
-    console.log("c.data before: ",c.data)    
+        // console.log("reducedRgbArr (int): ",reducedRgbArr)
+        // console.log("c.data before: ",c.data)    
     c.data = reducedRgbArr
-    console.log("c.data After: ",c.data)    
+        //console.log("c.data After: ",c.data)    
 
     // step through the new int vals, overwrite canvas pixels
     for (let y = 0; y < imgHeight; y += 1) { 
@@ -432,7 +441,7 @@ btnReduceColors.addEventListener("click", ()=>{
     // assign image data to outputImage
     let outputImage = new Image();    
     outputImage.src = c.toDataURL("image/jpeg");  
-    console.log("outpuImg.src: ",outputImage.src)  
+        //console.log("outpuImg.src: ",outputImage.src)  
     outputImage.classList.add("pixelated"); // add a class name to target elem later to clean dom
     outputImage.width = imgWidth;   
 
