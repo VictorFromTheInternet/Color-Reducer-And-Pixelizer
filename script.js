@@ -96,7 +96,7 @@ function getColorInputValues(){
     // query selector, all 
     let tempArray = new Array()
     let colorInputsList = document.querySelectorAll('.colorInputs')
-    console.log(colorInputsList)
+    //console.log(colorInputsList)
 
     for(let i=0; i<colorInputsList.length; i++){        
         let tempId = `colorInput${i}`
@@ -109,7 +109,7 @@ function getColorInputValues(){
         tempArray.push(tempValue) 
     }
 
-    console.log(tempArray)
+    //console.log(tempArray)
     return tempArray
 }
 function hexToRgb(hexStr){
@@ -227,6 +227,7 @@ function mostCommon(numColors, colorsArray){
 function closestColor(rgbVal, compareVals){
     let rgbRegex = /rgb\( (\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
     let matches = rgbRegex.exec(rgbVal);
+    //console.log(matches)
 
     let rOne = matches[1];
     let gOne = matches[2];
@@ -384,6 +385,7 @@ btnReduceColors.addEventListener("click", ()=>{
 
     // grab the color input values
     let colorReduceArray = getColorInputValues()
+    console.log("Color Reduce Array: ",colorReduceArray)
 
     // round each index to closest value 
     let roundedArr = sampleValuesArr
