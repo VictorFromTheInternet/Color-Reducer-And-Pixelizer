@@ -18,15 +18,15 @@ let pixelImg = new Image();
 let c;
 let ctx;
 let pixelArr;
-let sampleValuesArr = new Array();
-let mostCommonColors = new Array();
+//let sampleValuesArr = new Array();
+//let mostCommonColors = new Array();
 let numColors = 1;
 let pixelSampleSize = 10;
 
 let imgHeight = 0;
 let imgWidth = 0;
 
-let COLOR_INPUTS_ARRAY = new Array();
+//let COLOR_INPUTS_ARRAY = new Array();
 
 //btns
 let btnReduceColors = document.getElementById("btnReduceColors")
@@ -331,6 +331,8 @@ btnReduceColors.addEventListener("click", ()=>{
 */
 
 btnReduceColors.addEventListener("click", ()=>{  
+    // define arrays
+    let sampleValuesArr = new Array()
 
     // get values
     numColors = Number(document.getElementById("num-colors").value);
